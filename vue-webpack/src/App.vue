@@ -1,26 +1,27 @@
 <template>
   <div id="app">
     <div class="header">
-      <img src="./assets/logo.jpeg" alt="Confiturator Logo"/>
+      <img src="./assets/logo.jpeg" alt="Confiturator Logo" />
       <span>JavaScript Configurations for Everyone!</span>
       <span class="placeholder"></span>
     </div>
     <div class="content">
-      Test Phrase: {{ phrase }}
+      Test Phrase: {{ phrase }}!
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app',
+  name: 'App',
   data: function () {
     return {
       phrase: 'Not Configured'
     }
   },
   created () {
-    if (process.env.TEST_PHRASE) {
+    console.log(process.env);
+    if (process.env.TEST_PHRASE !== undefined) {
       this.phrase = process.env.TEST_PHRASE
     }
   }
