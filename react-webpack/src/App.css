@@ -1,0 +1,39 @@
+.App {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 10px;
+}
+
+.header {
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  background: #E79115;
+  border-bottom: 25px solid #2E2929;
+  border-radius: 15px;
+}
+.header img {
+  margin-left: 25px;
+  margin-top: 10px;
+  margin-right: 100px;
+}
+.placeholder {
+  height: 100%;
+}
+.header span {
+  display: inline-block;
+  font-size: 2.5rem;
+  vertical-align: middle;
+  font-weight: 500;
+}
+.content {
+  text-align: center;
+  font-size: 2.0rem;
+  padding-top: 25px;
+}
