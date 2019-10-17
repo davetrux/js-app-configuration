@@ -1,0 +1,28 @@
+// git credentials ID can be obtained by clicking on the "Credentials" link within jenkins and using the "ID" for the appropriate ssh key
+static final String GIT_CREDENTIALS_ID = 'CodeMash'
+static final String GIT_URL = 'git@github.com:davetrux/js-app-configuration.git'
+static final String APP_DIR = 'vue-webpack'
+static final String IMAGE_NAME = 'vue-webpack'
+
+properties(
+    [
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
+    ]
+)
+
+node('master') {
+    stage('git checkout') {
+        git credentialsId: GIT_CREDENTIALS_ID, url: GIT_URL
+    }
+
+    stage('APP npm install') {
+        dir (APP_DIR) {
+            sh 'npm install'
+        }
+    }
+
+    stage('Create Docker Image') {
+        env.NODE_ENV = 'production'
+        def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
+    }
+}
