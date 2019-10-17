@@ -14,9 +14,9 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <img src={logo} className="App-logo" alt="Configurator Logo" />
-        <span>JavaScript Configurations for Everyone!</span>
-        <img src={reactLogo} className="tech-logo" alt="React Logo" />
+        <div className="logo"><img src={logo} alt="Configurator Logo" /></div>
+        <div className="subtitle">JavaScript Configurations for Everyone!</div>
+        <div className="techlogo"><img src={reactLogo} alt="React Logo" /></div>
       </header>
       <div className="content">
         Test Phrase: { testPhrase }
