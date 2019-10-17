@@ -56,6 +56,8 @@ export default {
   .techlogo img {
     background: white;
     height: 125px;
+    padding: 5px;
+    border-radius: 15px;
   }
   .subtitle {
     font-size: 2.5rem;
