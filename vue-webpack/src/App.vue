@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div class="header">
-      <img src="./assets/logo.jpeg" alt="Confiturator Logo" />
-      <span>JavaScript Configurations for Everyone!</span>
-      <span class="placeholder"></span>
+      <div class="logo"><img src="./assets/logo.jpeg" alt="Confiturator Logo" /></div>
+      <div class="subtitle">JavaScript Configurations for Everyone!</div>
+      <div class="techlogo"><img src="./assets/vue-logo.png" alt="Vue Logo" /></div>
     </div>
     <div class="content">
       Test Phrase: {{ phrase }}!
@@ -36,31 +36,33 @@ export default {
 }
 
   .header {
-    display: -webkit-flexbox;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-flex-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
     align-items: center;
     background: #E79115;
     border-bottom: 25px solid #2E2929;
     border-radius: 15px;
   }
-  .header img {
+  .logo {
+    flex: 1;
+  }
+  .logo img {
     margin-left: 25px;
     margin-top: 10px;
-    margin-right: 100px;
   }
-  .placeholder {
-    height: 100%;
+  .techlogo {
+    flex: 1;
+    text-align: center;
   }
-  .header span {
-    display: inline-block;
+  .techlogo img {
+    background: white;
+    height: 125px;
+  }
+  .subtitle {
     font-size: 2.5rem;
     vertical-align: middle;
+    text-align: center;
     font-weight: 500;
+    flex: 3;
   }
   .content {
     text-align: center;
