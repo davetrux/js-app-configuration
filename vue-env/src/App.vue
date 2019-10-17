@@ -43,8 +43,8 @@
     border-radius: 15px;
   }
   .logo {
-    flex: 1;
-  }
+       flex: 1;
+     }
   .logo img {
     margin-left: 25px;
     margin-top: 10px;
