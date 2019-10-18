@@ -16,6 +16,9 @@ node('master') {
     }
 
     stage('APP npm install') {
+        agent {
+            docker { image 'alpine-js-tools' }
+        }
         dir (APP_DIR) {
             sh 'npm install'
         }
