@@ -27,8 +27,13 @@ podTemplate (
             }
         }
         stage('Docker build') {
+            environment {
+                NODE_ENV = 'production'
+            }
             container('docker') {
-                def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
+                dir (APP_DIR) {
+                    def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
+                }
             }
         }
     }
