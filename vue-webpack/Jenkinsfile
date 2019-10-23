@@ -1,7 +1,13 @@
-podTemplate {
+podTemplate (
+    containers: [
+        containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat')
+    ]
+) {
     node(POD_LABEL) {
         stage('Run shell') {
-            sh 'echo hello world'
+            container('nodejs') {
+                sh 'echo hello world'
+            }
         }
     }
 }
