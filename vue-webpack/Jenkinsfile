@@ -6,13 +6,14 @@ def GIT_URL = 'git@github.com:davetrux/js-app-configuration.git'
 def APP_DIR = 'vue-webpack'
 def IMAGE_NAME = 'vue-webpack'
 
-properties(
-    [
-        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
-    ]
-)
+// properties(
+//     [
+//         buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
+//     ]
+// )
 podTemplate(
   label: "vue-webpack-build",
+  inheritFrom: 'default',
   containers: [
     containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat'),
