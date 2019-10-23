@@ -32,27 +32,3 @@ podTemplate(
         }
     }
  }
-//
-//         stage('APP npm install') {
-//             container('nodejs') {
-//                 dir (APP_DIR) {
-//                     sh 'npm install'
-//                 }
-//             }
-//         }
-//
-//         stage('APP npm build') {
-//             container('nodejs') {
-//                 dir (APP_DIR) {
-//                     sh 'npm run build'
-//                 }
-//             }
-//         }
-//         stage('Create Docker Image') {
-//             env.NODE_ENV = 'production'
-//             container('docker'){
-//                 def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
-//             }
-//         }
-//     }
-// }
