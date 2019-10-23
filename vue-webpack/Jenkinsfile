@@ -4,6 +4,9 @@ podTemplate (
     containers: [
         containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat')
+    ],
+    volumes: [
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
     ]
 ) {
     node(POD_LABEL) {
