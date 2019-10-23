@@ -1,8 +1,10 @@
+#!groovy​
+
 // git credentials ID can be obtained by clicking on the "Credentials" link within jenkins and using the "ID" for the appropriate ssh key
-static final String GIT_CREDENTIALS_ID = 'github-key'
-static final String GIT_URL = 'git@github.com:davetrux/js-app-configuration.git'
-static final String APP_DIR = 'vue-webpack'
-static final String IMAGE_NAME = 'vue-webpack'
+def GIT_CREDENTIALS_ID = 'github-key'
+def GIT_URL = 'git@github.com:davetrux/js-app-configuration.git'
+def APP_DIR = 'vue-webpack'
+def IMAGE_NAME = 'vue-webpack'
 
 properties(
     [
