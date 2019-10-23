@@ -32,7 +32,8 @@ podTemplate (
             }
             container('docker') {
                 dir (APP_DIR) {
-                    def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
+                    sh "docker build -t vue-webpack:${env.BUILD_ID}"
+                    // def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
                 }
             }
         }
