@@ -1,3 +1,5 @@
+def APP_DIR = 'vue-webpack'
+
 podTemplate (
     containers: [
         containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat')
@@ -6,18 +8,21 @@ podTemplate (
     node(POD_LABEL) {
         stage('git') {
             container('nodejs') {
-                sh 'echo hello world'
                 checkout scm
             }
         }
         stage('npm install') {
             container('nodejs') {
-                sh 'npm install'
+                dir (APP_DIR) {
+                    sh 'npm install'
+                }
             }
         }
         stage('npm build') {
             container('nodejs') {
-                sh 'npm run build'
+                dir (APP_DIR) {
+                    sh 'npm run build'
+                }
             }
         }
     }
