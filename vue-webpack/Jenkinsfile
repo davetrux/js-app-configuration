@@ -10,7 +10,7 @@ properties(
     ]
 )
 podTemplate(
-  label: "vuepod-${UUID.randomUUID().toString()}",
+  label: "vue-webpack-build",
   containers: [
     containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
     containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat'),
@@ -19,34 +19,38 @@ podTemplate(
   volumes: [
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
   ]
-) {
+)
+{
     node(label) {
         stage('git checkout') {
-        container('nodejs'){
-            git credentialsId: GIT_CREDENTIALS_ID, url: GIT_URL
-           }
-        }
-
-        stage('APP npm install') {
-            container('nodejs') {
-                dir (APP_DIR) {
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('APP npm build') {
-            container('nodejs') {
-                dir (APP_DIR) {
-                    sh 'npm run build'
-                }
-            }
-        }
-        stage('Create Docker Image') {
-            env.NODE_ENV = 'production'
-            container('docker'){
-                def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
-            }
+            checkout scm
+//             container('nodejs') {
+//                 git credentialsId: GIT_CREDENTIALS_ID, url: GIT_URL
+//            }
         }
     }
-}
+ }
+//
+//         stage('APP npm install') {
+//             container('nodejs') {
+//                 dir (APP_DIR) {
+//                     sh 'npm install'
+//                 }
+//             }
+//         }
+//
+//         stage('APP npm build') {
+//             container('nodejs') {
+//                 dir (APP_DIR) {
+//                     sh 'npm run build'
+//                 }
+//             }
+//         }
+//         stage('Create Docker Image') {
+//             env.NODE_ENV = 'production'
+//             container('docker'){
+//                 def customImage = docker.build("${IMAGE_NAME}:${env.BUILD_ID}")
+//             }
+//         }
+//     }
+// }
