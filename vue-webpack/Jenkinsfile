@@ -1,16 +1,7 @@
-podTemplate(
-  label: "vue-webpack-build",
-  inheritFrom: 'default',
-  containers: [
-    containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat')
-  ],
-  volumes: [
-    hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
-  ]
-) {
-    node(label) {
-        stage('git checkout') {
-            sh 'node --version'
+podTemplate {
+    node(POD_LABEL) {
+        stage('Run shell') {
+            sh 'echo hello world'
         }
     }
- }
+}
