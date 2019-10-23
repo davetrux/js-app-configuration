@@ -4,10 +4,20 @@ podTemplate (
     ]
 ) {
     node(POD_LABEL) {
-        stage('Run shell') {
+        stage('git') {
             container('nodejs') {
                 sh 'echo hello world'
                 checkout scm
+            }
+        }
+        stage('npm install') {
+            container('nodejs') {
+                sh 'npm install'
+            }
+        }
+        stage('npm build') {
+            container('nodejs') {
+                sh 'npm run build'
             }
         }
     }
