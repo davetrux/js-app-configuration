@@ -2,7 +2,8 @@ def APP_DIR = 'vue-webpack'
 
 podTemplate (
     containers: [
-        containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat')
+        containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat')
     ]
 ) {
     node(POD_LABEL) {
@@ -23,6 +24,11 @@ podTemplate (
                 dir (APP_DIR) {
                     sh 'npm run build'
                 }
+            }
+        }
+        stage('Docker build') {
+            container('docker') {
+                def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
             }
         }
     }
