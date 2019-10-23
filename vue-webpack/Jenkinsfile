@@ -10,7 +10,7 @@ podTemplate(
 ) {
     node(label) {
         stage('git checkout') {
-            echo 'Crap'
+            sh 'node --version'
         }
     }
  }
