@@ -10,7 +10,7 @@ podTemplate(
 ) {
     node(label) {
         stage('git checkout') {
-            git credentialsId: 'github-key', url: 'git@github.com:davetrux/js-app-configuration.git'
+            echo 'Crap'
         }
     }
  }
