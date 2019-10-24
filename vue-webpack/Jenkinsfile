@@ -48,7 +48,7 @@ podTemplate (
             container ('helm') {
                 sh "helm init --client-only --skip-refresh"
                 dir (APP_DIR) {
-                    sh "helm upgrade --install vue-webpack ."
+                    sh "helm upgrade --install --set image.tag=${env.BUILD_ID} vue-webpack ."
                 }
             }
         }
