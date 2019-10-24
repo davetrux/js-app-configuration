@@ -47,7 +47,7 @@ podTemplate (
         stage('Kubernetes Deploy') {
             container ('helm') {
                 sh "helm init --client-only --skip-refresh"
-                sh "helm upgrade --install --wait . --name=vue-webpack"
+                sh "helm upgrade --install --wait ."
             }
         }
     }
