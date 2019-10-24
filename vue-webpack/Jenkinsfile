@@ -22,6 +22,9 @@ podTemplate (
                 }
             }
         }
+        stage('Run tests') {
+            echo 'You would run tests at this point'
+        }
         stage('npm build') {
             container('nodejs') {
                 dir (APP_DIR) {
@@ -35,7 +38,8 @@ podTemplate (
             }
             container('docker') {
                 dir (APP_DIR) {
-                    def customImage = docker.build("vue-webpack:${env.BUILD_ID}")
+                    def image = docker.build("vue-webpack:${env.BUILD_ID}")
+                    sh "docker tag ${image.id} vue-webpack:latest"
                 }
             }
         }
