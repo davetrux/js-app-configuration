@@ -44,7 +44,7 @@ podTemplate (
                 }
             }
         }
-        stage('Kubernetes Deploy') {
+        stage('K8s Deploy') {
             container ('helm') {
                 sh "helm init --client-only --skip-refresh"
                 dir (APP_DIR) {
