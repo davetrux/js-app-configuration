@@ -6,7 +6,7 @@ module.exports = {
                 testPhrase = '"I can do this all day"';
                 break;
             case 'production':
-                testPhrase = JSON.stringify("Merlin's Beard");
+                testPhrase = JSON.stringify("Odin's Beard");
                 break;
         }
 
