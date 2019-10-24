@@ -6,7 +6,7 @@
       <div class="techlogo"><img src="./assets/vue-logo.png" alt="Vue Logo" /></div>
     </div>
     <div class="content">
-      Test Phrase: {{ phrase }}! Yo
+      Test Phrase: {{ phrase }}!
     </div>
   </div>
 </template>
