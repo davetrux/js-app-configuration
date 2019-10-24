@@ -10,6 +10,7 @@
 .hg/
 .hgignore
 .svn/
+node_modules/
 # Common backup files
 *.swp
 *.bak
