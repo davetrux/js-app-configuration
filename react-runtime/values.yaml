@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: vue-webpack
+  repository: react-runtime
   tag: latest
   pullPolicy: IfNotPresent
 
