@@ -49,13 +49,5 @@ podTemplate (
                 sh "docker run --name react-wp -p 8003:80 -d react-webpack:${env.BUILD_ID}"
             }
         }
-//         stage('K8s Deploy') {
-//             container ('helm') {
-//                 sh "helm init --client-only --skip-refresh"
-//                 dir (APP_DIR) {
-//                     sh "helm upgrade --install --set image.tag=${env.BUILD_ID} react-webpack ."
-//                 }
-//             }
-//         }
     }
 }
