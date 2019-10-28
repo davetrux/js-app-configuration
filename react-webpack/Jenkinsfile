@@ -46,10 +46,7 @@ podTemplate (
         }
         stage('Docker run') {
             container('docker') {
-                dir (APP_DIR) {
-                    def image = docker.build("react-webpack:${env.BUILD_ID}")
-                    sh "docker run --name react-wp -p 8003:80 -d react-webpack:${env.BUILD_ID}"
-                }
+                sh "docker run --name react-wp -p 8003:80 -d react-webpack:${env.BUILD_ID}"
             }
         }
 //         stage('K8s Deploy') {
