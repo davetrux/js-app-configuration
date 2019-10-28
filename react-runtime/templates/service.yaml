@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ include "react-runtime.fullname" . }}
   labels:
-  {{ include "react-runtime.labels" . | indent 4 }}
+{{ include "react-runtime.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:

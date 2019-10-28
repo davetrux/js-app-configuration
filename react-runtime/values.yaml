@@ -1,4 +1,4 @@
-# Default values for vue-webpack.
+# Default values for react-runtime.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: react-runtime
-  tag: latest
+  tag: stable
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
@@ -18,10 +18,10 @@ service:
   port: 8002
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
-  # kubernetes.io/tls-acme: "true"
+    # kubernetes.io/tls-acme: "true"
   hosts:
     - host: kubernetes.docker.internal
       paths: ['/']
@@ -41,7 +41,7 @@ resources: {}
   #   memory: 128Mi
   # requests:
   #   cpu: 100m
-#   memory: 128Mi
+  #   memory: 128Mi
 
 nodeSelector: {}
 
