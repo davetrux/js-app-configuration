@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: react-runtime
+data:
+  config.js: |
+    window.config = (() => {
+      return {
+      TEST_PHRASE: "Odin's Beard"
+      };
+    })();
