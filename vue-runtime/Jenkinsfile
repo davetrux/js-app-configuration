@@ -1,4 +1,4 @@
-def APP_DIR = 'vue-webpack'
+def APP_DIR = 'vue-runtime'
 
 podTemplate (
     containers: [
