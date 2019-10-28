@@ -1,0 +1,64 @@
+def APP_DIR = 'react-webpack'
+
+podTemplate (
+    containers: [
+        containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'helm', image: 'dtzar/helm-kubectl:2.14.3', command: 'cat', ttyEnabled: true)
+    ],
+    volumes: [
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+    ]
+) {
+    node(POD_LABEL) {
+        stage('git') {
+            container('nodejs') {
+                checkout scm
+            }
+        }
+        stage('npm install') {
+            container('nodejs') {
+                dir (APP_DIR) {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Run tests') {
+            echo 'You would run tests at this point'
+        }
+        stage('npm build') {
+            container('nodejs') {
+                dir (APP_DIR) {
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Docker build') {
+            environment {
+                NODE_ENV = 'production'
+            }
+            container('docker') {
+                dir (APP_DIR) {
+                    def image = docker.build("react-webpack:${env.BUILD_ID}")
+                    sh "docker tag ${image.id} react-webpack:latest"
+                }
+            }
+        }
+        stage('Docker run') {
+            container('docker') {
+                dir (APP_DIR) {
+                    def image = docker.build("react-webpack:${env.BUILD_ID}")
+                    sh "docker run --name react-wp -p 8003:80 -d react-webpack:${env.BUILD_ID}"
+                }
+            }
+        }
+//         stage('K8s Deploy') {
+//             container ('helm') {
+//                 sh "helm init --client-only --skip-refresh"
+//                 dir (APP_DIR) {
+//                     sh "helm upgrade --install --set image.tag=${env.BUILD_ID} react-webpack ."
+//                 }
+//             }
+//         }
+    }
+}
