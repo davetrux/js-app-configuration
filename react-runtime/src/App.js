@@ -7,8 +7,8 @@ import './App.css';
 function App() {
   let testPhrase = 'Not configured';
 
-  if (process.env.TEST_PHRASE !== undefined) {
-      testPhrase = process.env.TEST_PHRASE;
+  if (window.config.TEST_PHRASE !== undefined) {
+      testPhrase = window.config.TEST_PHRASE;
   }
 
   return (
@@ -19,7 +19,7 @@ function App() {
         <div className="techlogo"><img src={reactLogo} alt="React Logo" /></div>
       </header>
       <div className="content">
-        Test Phrase: { testPhrase }
+        Test Phrase: { testPhrase }!
       </div>
     </div>
   );
