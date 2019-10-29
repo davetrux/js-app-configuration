@@ -1,0 +1,57 @@
+def APP_DIR = 'react-server'
+def CLIENT_DIR = 'react-server/client'
+
+podTemplate (
+    containers: [
+        containerTemplate(name: 'nodejs', image: "node:12-alpine", ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'docker', image: 'docker:19', ttyEnabled: true, command: 'cat')
+    ],
+    volumes: [
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+    ]
+) {
+    node(POD_LABEL) {
+        stage('git') {
+            container('nodejs') {
+                checkout scm
+            }
+        }
+        stage('npm install server') {
+            container('nodejs') {
+                dir (APP_DIR) {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('npm install client') {
+            container('nodejs') {
+                dir (CLIENT_DIR) {
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('npm build client') {
+            container('nodejs') {
+                dir (CLIENT_DIR) {
+                    sh 'npm run build'
+                }
+            }
+        }
+        stage('Docker build') {
+            environment {
+                NODE_ENV = 'production'
+            }
+            container('docker') {
+                dir (APP_DIR) {
+                    def image = docker.build("react-server:${env.BUILD_ID}")
+                    sh "docker tag ${image.id} react-server:latest"
+                }
+            }
+        }
+        stage('Docker run') {
+            container('docker') {
+                sh "docker run --name react-wp -p 8003:80 -d react-server:${env.BUILD_ID}"
+            }
+        }
+    }
+}
