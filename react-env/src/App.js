@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   let testPhrase = 'Not configured';
-
+  console.log(process.env)
   if (process.env.REACT_APP_TEST_PHRASE !== undefined) {
       testPhrase = process.env.REACT_APP_TEST_PHRASE;
   }
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <header className="header">
         <div className="logo"><img src={logo} alt="Configurator Logo" /></div>
-        <div className="subtitle">JavaScript Configurations for Everyone!</div>
+        <div className="subtitle">CatchPhrase!</div>
         <div className="techlogo"><img src={reactLogo} alt="React Logo" /></div>
       </header>
       <div className="content">
