@@ -41,9 +41,6 @@ podTemplate (
             }
         }
         stage('Docker build') {
-            environment {
-                DOCKER_ENV = 'production'
-            }
             container('docker') {
                 dir (APP_DIR) {
                     def image = docker.build("react-server:${env.BUILD_ID}")
@@ -52,6 +49,9 @@ podTemplate (
             }
         }
         stage('Docker run') {
+            environment {
+                DOCKER_ENV = 'production'
+            }
             container('docker') {
                 sh "docker run --name react-server -p 8005:3000 -d react-server:${env.BUILD_ID}"
             }
