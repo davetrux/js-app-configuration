@@ -6,9 +6,9 @@ import './App.css';
 
 function App() {
   let testPhrase = 'Not configured';
-  console.log(process.env)
-  if (process.env.REACT_APP_TEST_PHRASE !== undefined) {
-      testPhrase = process.env.REACT_APP_TEST_PHRASE;
+  console.log(window.config);
+  if (window.config && window.config.TEST_PHRASE !== undefined) {
+      testPhrase = window.config.TEST_PHRASE;
   }
 
   return (
