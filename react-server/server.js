@@ -6,7 +6,12 @@ const app = express();
 app.use(express.static(path.resolve(__dirname, './build')));
 
 app.get('*', function(request, response) {
-  const filePath = path.resolve(__dirname, './build', 'index.html');
+  let filePath;
+  if (request.originalUrl === '/') {
+    filePath = path.resolve(__dirname, './client/build', 'index.html');
+  } else {
+    filePath = path.resolve(__dirname, './client/build' + request.originalUrl);
+  }
   response.sendFile(filePath);
 });
 
