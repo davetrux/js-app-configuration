@@ -55,11 +55,8 @@ podTemplate (
             }
         }
         stage('Docker run') {
-            environment {
-                DOCKER_ENV = 'production'
-            }
             container('docker') {
-                sh "docker run --name react-server -p 8005:3000 -d react-server:${env.BUILD_ID}"
+                sh "docker run --name react-server -e DOCKER_ENV=production -p 8005:3000 -d react-server:${env.BUILD_ID}"
             }
         }
     }
