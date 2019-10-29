@@ -50,7 +50,7 @@ podTemplate (
         }
         stage('Docker run') {
             container('docker') {
-                sh "docker run --name react-wp -p 8003:80 -d react-server:${env.BUILD_ID}"
+                sh "docker run --name react-wp -p 8005:3000 -d react-server:${env.BUILD_ID}"
             }
         }
     }
