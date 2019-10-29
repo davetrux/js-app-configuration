@@ -6,6 +6,6 @@ data:
   config.js: |
     window.config = (() => {
       return {
-      TEST_PHRASE: "Odin's Beard"
+      TEST_PHRASE: "Bazinga"
       };
     })();
