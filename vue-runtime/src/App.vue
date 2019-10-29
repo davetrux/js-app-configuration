@@ -2,29 +2,16 @@
   <div id="app">
     <div class="header">
       <div class="logo"><img src="./assets/logo.jpeg" alt="Confiturator Logo" /></div>
-      <div class="subtitle">JavaScript Configurations for Everyone!</div>
+      <div class="subtitle">CatchPhrase</div>
       <div class="techlogo"><img src="./assets/vue-logo.png" alt="Vue Logo" /></div>
     </div>
-    <div class="content">
-      Test Phrase: {{ phrase }}!
-    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App',
-  data: function () {
-    return {
-      phrase: 'Not Configured'
-    }
-  },
-  created () {
-    console.log(window.config)
-    if (window.config && window.config.TEST_PHRASE !== undefined) {
-      this.phrase = window.config.TEST_PHRASE;
-    }
-  }
+  name: 'App'
 }
 </script>
 
@@ -65,10 +52,5 @@ export default {
     text-align: center;
     font-weight: 500;
     flex: 3;
-  }
-  .content {
-    text-align: center;
-    font-size: 2.0rem;
-    padding-top: 25px;
   }
 </style>
