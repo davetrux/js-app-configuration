@@ -40,12 +40,12 @@ podTemplate (
                 }
             }
         }
-        stage('Docker cleanup') {
-            container('docker') {
-                sh "docker stop react-server"
-                sh "docker rm react-server"
-            }
-        }
+//         stage('Docker cleanup') {
+//             container('docker') {
+//                 sh "docker stop react-server"
+//                 sh "docker rm react-server"
+//             }
+//         }
         stage('Docker build') {
             container('docker') {
                 dir (APP_DIR) {
