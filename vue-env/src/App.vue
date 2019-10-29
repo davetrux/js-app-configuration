@@ -2,7 +2,7 @@
   <div id="app">
     <div class="header">
       <div class="logo"><img src="./assets/logo.jpeg" alt="Confiturator Logo" /></div>
-      <div class="subtitle">JavaScript Configurations for Everyone!</div>
+      <div class="subtitle">CatchPhrase!</div>
       <div class="techlogo"><img src="./assets/vue-logo.png" alt="Vue Logo" /></div>
     </div>
     <div class="content">
