@@ -6,7 +6,7 @@ module.exports = merge(common, {
     mode: 'production',
     plugins: [
       new webpack.DefinePlugin({
-        TEST_PHRASE: JSON.stringify('Bazinga!')
+        'process.env.TEST_PHRASE': JSON.stringify('Bazinga!')
       })
     ]
   });
