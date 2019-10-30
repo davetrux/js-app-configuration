@@ -1,4 +1,4 @@
-def APP_DIR = 'react-runtime'
+def APP_DIR = 'react-webpack-custom'
 
 podTemplate (
     containers: [
@@ -23,9 +23,6 @@ podTemplate (
                 }
             }
         }
-        stage('Run tests') {
-            echo 'You would run tests at this point'
-        }
         stage('npm build') {
             container('nodejs') {
                 dir (APP_DIR) {
@@ -34,13 +31,10 @@ podTemplate (
             }
         }
         stage('Docker build') {
-            environment {
-                NODE_ENV = 'production'
-            }
             container('docker') {
                 dir (APP_DIR) {
-                    def image = docker.build("react-runtime:${env.BUILD_ID}")
-                    sh "docker tag ${image.id} react-runtime:latest"
+                    def image = docker.build("react-webpack-custom:${env.BUILD_ID}")
+                    sh "docker tag ${image.id} react-webpack-custom:latest"
                 }
             }
         }
@@ -48,7 +42,7 @@ podTemplate (
             container ('helm') {
                 sh "helm init --client-only --skip-refresh"
                 dir (APP_DIR) {
-                    sh "helm upgrade --install --set image.tag=${env.BUILD_ID} react-runtime ."
+                    sh "helm upgrade --install --set image.tag=${env.BUILD_ID} react-webpack-custom ."
                 }
             }
         }
