@@ -1,3 +1,5 @@
+const credstash = require('nodecredstash')
+
 module.exports = {
     chainWebpack: async config => {
         let testPhrase = '';
@@ -23,3 +25,16 @@ module.exports = {
         sourceMap: true
     }
 };
+
+function getKey (name) {
+    return new Promise(function (resolve, reject) {
+        credstash.getSecret({name: name})
+          .then(key => {
+              logger.debug('key acquired');
+              resolve(key)
+          })
+          .catch(err =>{
+              logger.debug('key not found');
+              reject(err)
+          })
+    });
